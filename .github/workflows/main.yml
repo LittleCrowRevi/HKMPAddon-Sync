@@ -26,7 +26,8 @@ jobs:
       - name: Fetch HKMP dependency
         run: |
           mkdir References/HKMP
-          wget https://github.com/Extremelyd1/HKMP/releases/latest/download/HKMP.zip unzip HKMP.zip References/HKMP
+          wget https://github.com/Extremelyd1/HKMP/releases/latest/download/HKMP.zip -O HKMP.zip
+          unzip HKMP.zip -d References/HKMP
       # - name: Fetch a dependency
       #   run: |
       #     wget {dependencyLink} -O {dependencyName}.zip
