@@ -19,7 +19,7 @@ internal class HkmpAddon : Mod
     /// <summary>
     /// An instance of the client add-on class.
     /// </summary>
-    private HKMPAddonClientAddon _clientAddon;
+    private HkmpAddonClientAddon _clientAddon;
         
     /// <summary>
     /// An instance of the server add-on class.
@@ -39,7 +39,7 @@ internal class HkmpAddon : Mod
 
         Instance = this;
 
-        _clientAddon = new HKMPAddonClientAddon();
+        _clientAddon = new HkmpAddonClientAddon();
         _serverAddon = new HKMPAddonServerAddon();
 
         // Register the client and server add-ons.

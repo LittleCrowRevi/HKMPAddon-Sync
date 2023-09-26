@@ -6,36 +6,18 @@ namespace HKMPAddon.HKMP
     /// <summary>
     /// The client add-on class.
     /// </summary>
-    internal class HKMPAddonClientAddon : ClientAddon
+    internal class HkmpAddonClientAddon : ClientAddon
     {
-        protected override string Name
-        { 
-            get
-            { 
-                return Assembly.GetExecutingAssembly().GetName().Name;
-            }
-        }
-        
-        protected override string Version
-        {
-            get
-            {
-                return HkmpAddon.Instance.GetVersion();
-            }
-        }
+        protected override string Name => Assembly.GetExecutingAssembly().GetName().Name;
 
-        public override bool NeedsNetwork
-        {
-            get
-            {
-                return true;
-            }
-        }
+        protected override string Version => HkmpAddon.Instance.GetVersion();
+
+        public override bool NeedsNetwork => true;
 
         /// <summary>
         /// The global instance of the client add-on.
         /// </summary>
-        public static HKMPAddonClientAddon Instance { get; private set; }
+        public static HkmpAddonClientAddon Instance { get; private set; }
 
         /// <summary>
         /// Holds a reference to the client API passed into Initialize.
@@ -82,25 +64,13 @@ namespace HKMPAddon.HKMP
                 HkmpAddon.Instance.Log("[Client] You have disconnected from the server.");
             };
 
-            clientApi.ClientManager.PlayerConnectEvent += (player) =>
-            {
-                HkmpAddon.Instance.Log($"[Client] Player {player.Username} has connected to the server.");
-            };
+            clientApi.ClientManager.PlayerConnectEvent += OnPlayerConnect;
 
-            clientApi.ClientManager.PlayerDisconnectEvent += (player) =>
-            {
-                HkmpAddon.Instance.Log($"[Client] Player {player.Username} has disconnected from the server.");
-            };
+            clientApi.ClientManager.PlayerDisconnectEvent += OnPlayerDisconnect;
 
-            clientApi.ClientManager.PlayerEnterSceneEvent += (player) =>
-            {
-                HkmpAddon.Instance.Log($"[Client] Player {player.Username} has entered a scene.");
-            };
+            clientApi.ClientManager.PlayerEnterSceneEvent += OnPlayerEnterScene;
 
-            clientApi.ClientManager.PlayerLeaveSceneEvent += (player) =>
-            {
-                HkmpAddon.Instance.Log($"[Client] Player {player.Username} has left a scene.");
-            };
+            clientApi.ClientManager.PlayerLeaveSceneEvent += OnPlayerLeaveScene;
         }
 
         /// <summary>
@@ -113,6 +83,26 @@ namespace HKMPAddon.HKMP
             {
                 Message = message,
             });
+        }
+
+        private void OnPlayerConnect(IClientPlayer player)
+        {
+            HkmpAddon.Instance.Log($"[Client] Player {player.Username} has connected to the server.");
+        }
+
+        private void OnPlayerDisconnect(IClientPlayer player)
+        {
+            HkmpAddon.Instance.Log($"[Client] Player {player.Username} has disconnected from the server.");
+        }
+
+        private void OnPlayerEnterScene(IClientPlayer player)
+        {
+            HkmpAddon.Instance.Log($"[Client] Player {player.Username} has entered a scene.");
+        }
+
+        private void OnPlayerLeaveScene(IClientPlayer player)
+        { 
+            HkmpAddon.Instance.Log($"[Client] Player {player.Username} has left a scene.");
         }
     }
 }

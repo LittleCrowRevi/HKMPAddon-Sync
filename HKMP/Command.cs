@@ -29,7 +29,7 @@ namespace HKMPAddon.HKMP
             }
 
             // Send the message to the server.
-            HKMPAddonClientAddon.Instance.SendMessage(message);
+            HkmpAddonClientAddon.Instance.SendMessage(message);
         }
     }
 }

@@ -8,21 +8,9 @@ namespace HKMPAddon.HKMP
     /// </summary>
     internal class MessageFromServerToClientData : IPacketData
     {
-        public bool IsReliable
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsReliable => true;
 
-        public bool DropReliableDataIfNewerExists
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool DropReliableDataIfNewerExists => true;
 
         /// <summary>
         /// The ID of the player to send the server's message to.
@@ -62,21 +50,9 @@ namespace HKMPAddon.HKMP
     /// </summary>
     internal class MessageFromClientToServerData : IPacketData
     {
-        public bool IsReliable
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsReliable => true;
 
-        public bool DropReliableDataIfNewerExists
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool DropReliableDataIfNewerExists => true;
 
         /// <summary>
         /// The message that a client will send to the server.
